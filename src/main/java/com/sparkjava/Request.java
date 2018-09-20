@@ -13,4 +13,8 @@ public class Request {
     String pathParam(String key) {
         return ctx.pathParam(key);
     }
+
+    String url() {
+        return ctx.url();
+    }
 }

@@ -6,9 +6,12 @@ public class HelloWorld {
 
         Spark spark = new Spark();
 
-        spark.get("/", (req, res) -> "Hello");
+        spark.before("*", (req, res) -> System.out.println(req.url()));
 
-        spark.get("/redirect", (req, res) -> "Hello " + res.redirect("/Spark"));
+        spark.before("/redirect", (req, res) -> res.redirect("/Spark"));
+        spark.get("/redirectNr2", (req, res) -> res.redirect("/Spark"));
+
+        spark.get("/", (req, res) -> "Hello");
 
         spark.get("/:name", (req, res) -> "Hello " + req.pathParam("name"));
 
